@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "c625e495-6fae-4afb-9c1e-52417c3a90e6",
+		"name": "EJERCICIO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2682324"
+	},
+	"item": [
+		{
+			"name": "localhost:8081/newUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"juanito\",\r\n    \"email\": \"juanito@gmail.cl\",\r\n    \"password\": \"23dawdasx\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/newUser",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"newUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/getUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/getUsers",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"getUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/newPhone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"number\":\"987876546\",\r\n    \"citycode\":\"12\",\r\n    \"contrycode\":\"123123-E\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/newPhone",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"newPhone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/getPhones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/getPhones",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"getPhones"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/newUser 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"pepe\",\r\n    \"email\": \"pepe@gmail.cl\",\r\n    \"password\": \"23dawdasx\",\r\n    \"phones\":[\r\n        {\r\n            \"number\":\"9232323236\",\r\n            \"citycode\":\"13\",\r\n            \"contrycode\":\"32-E\"\r\n        },\r\n        {\r\n            \"number\":\"3423423423\",\r\n            \"citycode\":\"2\",\r\n            \"contrycode\":\"1-a2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/newUser",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"newUser"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
