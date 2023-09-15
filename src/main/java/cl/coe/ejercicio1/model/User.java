@@ -35,7 +35,7 @@ public class User {
 	private Integer idUser;
 	
 	/** The name. */
-	private String name;
+	private String username;
 	
 	/** The email. */
 	private String email;
@@ -58,22 +58,14 @@ public class User {
 	private Set<Phone> phones;
 	
 
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
+
+
+	public String getUsername() {
+		return username;
 	}
 
-	/**
-	 * Sets the name.
-	 *
-	 * @param name the new name
-	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	/**
