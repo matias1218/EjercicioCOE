@@ -17,30 +17,50 @@ import cl.coe.ejercicio1.filter.JwtAuthenticationFilter;
 import cl.coe.ejercicio1.filter.JwtAuthorizationFilter;
 import cl.coe.ejercicio1.impl.UserDetailsServiceImpl;
 import cl.coe.ejercicio1.jwt.JwtUtils;
+import cl.coe.ejercicio1.repository.UserRepository;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SecurityConfig.
+ */
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 	
+	/** The jwt utils. */
 	@Autowired
 	JwtUtils jwtUtils;
 	
+	/** The user details service. */
 	@Autowired
 	UserDetailsServiceImpl userDetailsService;
 	
+	/** The authorization filter. */
 	@Autowired
 	JwtAuthorizationFilter authorizationFilter;
+	
+	/** The user repository. */
+	@Autowired
+	UserRepository userRepository;
 
+	/**
+	 * Security filter chain.
+	 *
+	 * @param httpSecurity the http security
+	 * @param authenticationManager the authentication manager
+	 * @return the security filter chain
+	 * @throws Exception the exception
+	 */
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, AuthenticationManager authenticationManager) throws Exception {
 		
-		JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtUtils);
+		JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtUtils, userRepository);
 		jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
 		
 		return httpSecurity
 				.csrf(config -> config.disable())
 				.authorizeHttpRequests(auth -> {
-					auth.requestMatchers("/health").permitAll();
+					auth.requestMatchers("/newUser").permitAll();
 					auth.anyRequest().authenticated();
 				})
 				.sessionManagement( session ->{
@@ -52,11 +72,24 @@ public class SecurityConfig {
 				
 	}
 	
+	/**
+	 * Password encoder.
+	 *
+	 * @return the password encoder
+	 */
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
+	/**
+	 * Authentication manager.
+	 *
+	 * @param httpSecurity the http security
+	 * @param passwordEncoder the password encoder
+	 * @return the authentication manager
+	 * @throws Exception the exception
+	 */
 	@Bean
 	AuthenticationManager authenticationManager(HttpSecurity httpSecurity, PasswordEncoder passwordEncoder) throws Exception {
 		return httpSecurity.getSharedObject(AuthenticationManagerBuilder.class)

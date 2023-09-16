@@ -14,6 +14,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Phone.
+ */
 @Entity
 @Table(name = "\"phone\"")
 public class Phone {

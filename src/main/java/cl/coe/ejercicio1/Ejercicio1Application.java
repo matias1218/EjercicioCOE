@@ -10,19 +10,35 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import cl.coe.ejercicio1.model.User;
 import cl.coe.ejercicio1.repository.UserRepository;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Ejercicio1Application.
+ */
 @SpringBootApplication
 public class Ejercicio1Application {
 	
+	/** The password encoder. */
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
+	/** The user repository. */
 	@Autowired
 	UserRepository userRepository;
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(Ejercicio1Application.class, args);
 	}
 	
+	/**
+	 * Inits the.
+	 *
+	 * @return the command line runner
+	 */
 	@Bean
 	CommandLineRunner init() {
 		return args -> {
@@ -33,20 +49,13 @@ public class Ejercicio1Application {
 			
 			userRepository.save(user);
 			
+			
 			User user2 = new User();
-			user.setUsername("matias1234");
-			user.setEmail("matias.rodriguez@gmail.com");
-			user.setPassword(passwordEncoder.encode("cebra1212"));
+			user2.setUsername("pedritoXD");
+			user2.setEmail("xd.pedrito@gmail.com");
+			user2.setPassword(passwordEncoder.encode("root"));
 			
 			userRepository.save(user2);
-			
-			
-			User user3 = new User();
-			user.setUsername("pedritoXD");
-			user.setEmail("xd.pedrito@gmail.com");
-			user.setPassword(passwordEncoder.encode("root"));
-			
-			userRepository.save(user3);
 		};
 	}
 

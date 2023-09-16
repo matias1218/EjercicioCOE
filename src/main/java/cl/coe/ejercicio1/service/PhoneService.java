@@ -5,27 +5,44 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cl.coe.ejercicio1.dto.PhoneDto;
+import cl.coe.ejercicio1.dto.PhoneDTO;
 import cl.coe.ejercicio1.model.Phone;
 import cl.coe.ejercicio1.model.User;
 import cl.coe.ejercicio1.repository.PhoneRepository;
 import cl.coe.ejercicio1.repository.UserRepository;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PhoneService.
+ */
 @Service
 public class PhoneService {
 	
-	 @Autowired
+	 /** The phone repository. */
+ 	@Autowired
 	 private PhoneRepository phoneRepository;
 	 
-	 @Autowired
+	 /** The user repository. */
+ 	@Autowired
 	 private UserRepository userRepository;
 	 
 	 
-	 public Iterable<Phone> findAll(){
+	 /**
+ 	 * Find all.
+ 	 *
+ 	 * @return the iterable
+ 	 */
+ 	public Iterable<Phone> findAll(){
 		 return phoneRepository.findAll();
 	 }
 	 
-	 public Phone createPhone(PhoneDto phoneDto) {
+	 /**
+ 	 * Creates the phone.
+ 	 *
+ 	 * @param phoneDto the phone dto
+ 	 * @return the phone
+ 	 */
+ 	public Phone createPhone(PhoneDTO phoneDto) {
 		 Phone phone = null;
 		 Optional<User> user = userRepository.findById(phoneDto.getIdUser());
 		 if(user.isPresent()) {
@@ -34,7 +51,9 @@ public class PhoneService {
 			 phone.setContrycode(phoneDto.getContrycode());
 			 phone.setNumber(phoneDto.getNumber());
 			 phone.setUser(user.get());
-			 phone =  phoneRepository.save(phone);
+			 user.get().getPhones().add(phone);
+			 userRepository.save(user.get());
+			 phone = phoneRepository.save(phone);
 		 }
 		 return phone;
 		 

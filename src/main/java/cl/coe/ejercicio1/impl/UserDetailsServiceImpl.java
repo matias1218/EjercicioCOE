@@ -14,12 +14,24 @@ import org.springframework.stereotype.Service;
 import cl.coe.ejercicio1.model.User;
 import cl.coe.ejercicio1.repository.UserRepository;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserDetailsServiceImpl.
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 	
+	/** The user repository. */
 	@Autowired
 	private UserRepository userRepository;
 	
+	/**
+	 * Load user by username.
+	 *
+	 * @param username the username
+	 * @return the user details
+	 * @throws UsernameNotFoundException the username not found exception
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
